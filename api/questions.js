@@ -1,3 +1,19 @@
+module.exports = (req, res) => {
+    const authToken = req.headers['authorization'];
+    console.log("Auth Token Received:", authToken); // Linie de debug pentru a verifica token-ul primit
+
+    const myToken = '1234';
+
+    if (authToken !== myToken) {
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
+    }
+
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.status(200).json(questions);
+};
+
+
 const questions = [
     {
         id: 1,
@@ -35,19 +51,5 @@ const questions = [
 //     res.status(200).json(questions);
 // };
 
-module.exports = (req, res) => {
-    const authToken = req.headers['authorization'];
-    console.log("Auth Token Received:", authToken); // Linie de debug pentru a verifica token-ul primit
-
-    const myToken = '1234';
-
-    if (authToken !== myToken) {
-        res.status(401).json({ error: 'Unauthorized' });
-        return;
-    }
-
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.status(200).json(questions);
-};
 
   
