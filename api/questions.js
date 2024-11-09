@@ -1,6 +1,3 @@
-const express = require('express');
-const app = express();
-
 const questions = [
     {
         id: 1,
@@ -34,8 +31,6 @@ const questions = [
     }
 ];
 
-app.get('/', (req, res) => {
-    res.json(questions);
-});
-
-module.exports = app;
+module.exports = (req, res) => {
+    res.status(200).json(questions);
+};
