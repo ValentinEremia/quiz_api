@@ -36,6 +36,15 @@ const questions = [
 // };
 
 module.exports = (req, res) => {
+    const authToken = req.headers['authorization'];
+    const myToken = 'my_static_token'; // definește un token static pentru acces
+  
+    if (authToken !== myToken) {
+      res.status(401).json({ error: 'Unauthorized' });
+      return;
+    }
+  
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.status(200).json(questions);
-};
+  };
+  
