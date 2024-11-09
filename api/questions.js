@@ -37,14 +37,17 @@ const questions = [
 
 module.exports = (req, res) => {
     const authToken = req.headers['authorization'];
-    const myToken = '1234'; // definește un token static pentru acces
-  
+    console.log("Auth Token Received:", authToken); // Linie de debug pentru a verifica token-ul primit
+
+    const myToken = '1234';
+
     if (authToken !== myToken) {
-      res.status(401).json({ error: 'Unauthorized' });
-      return;
+        res.status(401).json({ error: 'Unauthorized' });
+        return;
     }
-  
+
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.status(200).json(questions);
-  };
+};
+
   
